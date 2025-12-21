@@ -19,6 +19,7 @@ modules:
     scripts:
       - install-nix.sh
       - configure-sddm.sh
+      - setup-user-configs.sh
 
   # Install Hyprland and utilities
   - type: dnf

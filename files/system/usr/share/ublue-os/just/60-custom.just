@@ -3,29 +3,61 @@
 # Update to the latest custom image from GitHub
 update-custom:
     #!/usr/bin/env bash
-    set -euo pipefail
-    echo "Checking for custom image updates..."
-    if rpm-ostree rebase ostree-unverified-registry:ghcr.io/andersns/bluebuild-andersns-desktop:latest 2>&1 | grep -q "old and new refs are equal"; then
-        echo "Already on the latest custom image version!"
-    else
-        echo ""
-        echo "Update downloaded! Reboot to apply changes:"
-        echo "  systemctl reboot"
-    fi
+    echo "Updating to latest custom image..."
+    rpm-ostree update
+    echo ""
+    echo "Update complete! Reboot to apply changes:"
+    echo "  systemctl reboot"
 
 # Full system update (base + custom image + flatpaks)
 update-all:
     #!/usr/bin/env bash
-    set -euo pipefail
-    echo "==> Checking for custom BlueBuild image updates..."
-    if rpm-ostree rebase ostree-unverified-registry:ghcr.io/andersns/bluebuild-andersns-desktop:latest 2>&1 | grep -q "old and new refs are equal"; then
-        echo "Already on the latest custom image version"
-    else
-        echo "Custom image updated!"
-    fi
+    echo "==> Updating custom BlueBuild image..."
+    rpm-ostree update
     echo ""
     echo "==> Updating Flatpaks..."
     flatpak update -y
     echo ""
-    echo "==> Updates complete!"
-    rpm-ostree status | grep -q "pending" && echo "Reboot to apply system changes: systemctl reboot" || echo "No system reboot needed"
+    echo "==> Updates complete! Reboot to apply changes:"
+    echo "  systemctl reboot"
+
+# Reset configs to fresh defaults (as if new user)
+reset-configs:
+    #!/usr/bin/env bash
+    echo "This will reset your Hyprland, Alacritty, Kitty, and Waybar configs to defaults."
+    echo "WARNING: Current configs will be deleted (no backup)."
+    echo ""
+    read -p "Continue? [y/N] " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Cancelled."
+        exit 0
+    fi
+    
+    # Remove existing configs
+    echo "Removing current configs..."
+    rm -rf "$HOME/.config/hypr"
+    rm -rf "$HOME/.config/alacritty"
+    rm -rf "$HOME/.config/kitty"
+    rm -rf "$HOME/.config/waybar"
+    rm -f "$HOME/.config/.skel-configs-copied"
+    
+    # Copy fresh configs from skel
+    echo "Copying fresh configs..."
+    cp -r /usr/etc/skel/.config/hypr "$HOME/.config/"
+    cp -r /usr/etc/skel/.config/alacritty "$HOME/.config/"
+    cp -r /usr/etc/skel/.config/kitty "$HOME/.config/"
+    cp -r /usr/etc/skel/.config/waybar "$HOME/.config/"
+    
+    # Setup hardware-specific environment
+    echo "Setting up hardware-specific environment..."
+    /usr/share/ublue-os/setup-hyprland-env.sh
+    
+    # Mark as setup
+    touch "$HOME/.config/.skel-configs-copied"
+    
+    echo ""
+    echo "✓ Configs reset to defaults!"
+    echo ""
+    echo "Restart Hyprland to apply changes:"
+    echo "  Log out and log back in, or run: hyprctl reload"
