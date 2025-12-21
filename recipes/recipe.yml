@@ -20,6 +20,7 @@ modules:
       - install-nix.sh
       - configure-sddm.sh
       - setup-user-configs.sh
+      - customize-os-release.sh
 
   # Install Hyprland and utilities
   - type: dnf
