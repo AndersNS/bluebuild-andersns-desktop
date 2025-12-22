@@ -28,7 +28,7 @@ modules:
       copr:
         - solopasha/hyprland
         - pgdev/ghostty
-        - abenz1267/walker
+        - errornointernet/walker
     install:
       packages:
         - hyprland
@@ -41,6 +41,7 @@ modules:
         - wofi
         - rofi-wayland
         - walker
+        - elephant
         - swaync
         - wlogout
         - ghostty
