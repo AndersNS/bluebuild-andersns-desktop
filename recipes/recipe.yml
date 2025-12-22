@@ -27,6 +27,7 @@ modules:
     repos:
       copr:
         - solopasha/hyprland
+        - pgdev/ghostty
     install:
       packages:
         - hyprland
@@ -40,6 +41,7 @@ modules:
         - rofi-wayland
         - swaync
         - wlogout
+        - ghostty
         - foot
         - kitty
         - alacritty
