@@ -1,0 +1,80 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/module-v1.json
+# Shared modules for all image variants
+
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  # Install Nix via Determinate installer
+  - type: script
+    scripts:
+      - install-nix.sh
+
+  # Install Hyprland and utilities
+  - type: dnf
+    repos:
+      copr:
+        - solopasha/hyprland
+    install:
+      packages:
+        # Hyprland (hyprland-qtutils skipped - COPR needs Qt 6.10 rebuild)
+        - hyprland
+        - xdg-desktop-portal-hyprland
+        - hyprpaper
+        - hyprlock
+        - hypridle
+        # Bar and launchers
+        - waybar
+        - wofi
+        - rofi-wayland
+        # Utilities
+        - swaync
+        - wlogout
+        - grim
+        - slurp
+        # Terminals
+        - foot
+        - kitty
+        - alacritty
+        # File manager
+        - thunar
+        - thunar-archive-plugin
+        - thunar-volman
+        # Audio/media
+        - playerctl
+        - pamixer
+        - pavucontrol
+        - blueman
+        - papirus-icon-theme
+        - fontawesome-fonts-all
+        - jetbrains-mono-fonts-all
+    remove:
+      packages:
+        - gnome-shell
+        - gnome-session
+        - gnome-session-xsession
+        - gnome-classic-session
+        - gnome-shell-extension-appindicator
+        - gnome-shell-extension-dash-to-dock
+        - gnome-shell-extension-blur-my-shell
+        - gdm
+
+  # Configure SDDM and user configs (after packages installed)
+  - type: script
+    scripts:
+      - configure-sddm.sh
+      - setup-user-configs.sh
+      - customize-os-release.sh
+
+  # Flatpaks
+  - type: default-flatpaks
+    configurations:
+      - scope: system
+        notify: true
+        install:
+          - com.mitchellh.ghostty
+
+  # Image signing
+  - type: signing

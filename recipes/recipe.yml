@@ -3,82 +3,9 @@
 name: bluebuild-andersns-desktop
 description: Gaming + Hyprland + Nix development image based on Bazzite
 
-# Base image: Bazzite NVIDIA includes Steam, MangoHud, Gamescope, gaming kernel, and NVIDIA drivers
-base-image: ghcr.io/ublue-os/bazzite-nvidia
-image-version: 42
+# Base image: Bazzite includes Steam, MangoHud, Gamescope, gaming kernel
+base-image: ghcr.io/ublue-os/bazzite
+image-version: latest
 
 modules:
-  # Copy system files (configs, scripts, justfiles)
-  - type: files
-    files:
-      - source: system
-        destination: /
-
-  # Install Nix via Determinate installer
-  - type: script
-    scripts:
-      - install-nix.sh
-      - configure-sddm.sh
-      - setup-user-configs.sh
-      - customize-os-release.sh
-
-  # Install Hyprland and utilities
-  - type: dnf
-    repos:
-      copr:
-        - solopasha/hyprland
-        - pgdev/ghostty
-        - errornointernet/walker
-    install:
-      packages:
-        - hyprland
-        - xdg-desktop-portal-hyprland
-        - hyprland-qtutils
-        - hyprpaper
-        - hyprlock
-        - hypridle
-        - waybar
-        - wofi
-        - rofi-wayland
-        - walker
-        - elephant
-        - swaync
-        - wlogout
-        - ghostty
-        - foot
-        - kitty
-        - alacritty
-        - grim
-        - slurp
-        - thunar
-        - thunar-archive-plugin
-        - thunar-volman
-        - polkit-kde
-        - playerctl
-        - pamixer
-        - pavucontrol
-        - blueman
-        - papirus-icon-theme
-        - fontawesome-fonts-all
-        - jetbrains-mono-fonts-all
-    remove:
-      packages:
-        - gnome-shell
-        - gnome-session
-        - gnome-session-xsession
-        - gnome-classic-session
-        - gnome-shell-extension-appindicator
-        - gnome-shell-extension-dash-to-dock
-        - gnome-shell-extension-blur-my-shell
-        - gdm
-
-  # Firefox as Flatpak
-  - type: default-flatpaks
-    configurations:
-      - scope: system
-        notify: true
-        install:
-          - org.mozilla.firefox
-
-  # Image signing
-  - type: signing
+  - from-file: modules/shared.yml
