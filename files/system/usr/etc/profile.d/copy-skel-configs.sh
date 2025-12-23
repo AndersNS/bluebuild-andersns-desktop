@@ -17,6 +17,12 @@ if [ ! -f "$HOME/.config/hypr/hyprland.conf" ] && [ -d "/usr/etc/skel/.config/hy
   cp -r /usr/etc/skel/.config/hypr/* "$HOME/.config/hypr/" 2>/dev/null
 fi
 
+# Always ensure env.conf exists (required by hyprland.conf source directive)
+if [ ! -f "$HOME/.config/hypr/env.conf" ] && [ -f "/usr/etc/skel/.config/hypr/env.conf" ]; then
+  mkdir -p "$HOME/.config/hypr" 2>/dev/null
+  cp /usr/etc/skel/.config/hypr/env.conf "$HOME/.config/hypr/env.conf" 2>/dev/null
+fi
+
 # Copy Alacritty config if it doesn't exist
 if [ ! -f "$HOME/.config/alacritty/alacritty.toml" ] && [ -d "/usr/etc/skel/.config/alacritty" ]; then
   mkdir -p "$HOME/.config/alacritty" 2>/dev/null

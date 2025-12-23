@@ -8,6 +8,12 @@ RELOAD_HYPRLAND=false
 # Create config directory if it doesn't exist
 mkdir -p "$HOME/.config"
 
+# ALWAYS ensure env.conf exists (required by hyprland.conf source directive)
+if [ ! -f "$HOME/.config/hypr/env.conf" ] && [ -f "/usr/etc/skel/.config/hypr/env.conf" ]; then
+    mkdir -p "$HOME/.config/hypr"
+    cp /usr/etc/skel/.config/hypr/env.conf "$HOME/.config/hypr/env.conf"
+fi
+
 # ALWAYS check and replace Hyprland auto-generated config
 if [ -d "/usr/etc/skel/.config/hypr" ]; then
     mkdir -p "$HOME/.config/hypr"

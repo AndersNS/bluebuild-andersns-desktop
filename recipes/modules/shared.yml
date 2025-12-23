@@ -50,18 +50,8 @@ modules:
         - papirus-icon-theme
         - fontawesome-fonts-all
         - jetbrains-mono-fonts-all
-    remove:
-      packages:
-        - gnome-shell
-        - gnome-session
-        - gnome-session-xsession
-        - gnome-classic-session
-        - gnome-shell-extension-appindicator
-        - gnome-shell-extension-dash-to-dock
-        - gnome-shell-extension-blur-my-shell
-        - gdm
 
-  # Configure SDDM and user configs (after packages installed)
+  # Configure display manager and user configs (after packages installed)
   - type: script
     scripts:
       - configure-sddm.sh
