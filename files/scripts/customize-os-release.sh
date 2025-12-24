@@ -6,8 +6,8 @@ set -oue pipefail
 echo "Customizing OS release information..."
 
 # Modify /usr/lib/os-release
-sed -i 's/^NAME=.*/NAME="AndersNS Desktop"/' /usr/lib/os-release
-sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="AndersNS Desktop 42 (Hyprland Gaming)"/' /usr/lib/os-release
+sed -i 's/^NAME=.*/NAME="AndersNS Desktop 43 (Hyprland Gaming)"/' /usr/lib/os-release
+sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="AndersNS Desktop OS - 1.0"/' /usr/lib/os-release
 sed -i 's/^DEFAULT_HOSTNAME=.*/DEFAULT_HOSTNAME="andersns-desktop"/' /usr/lib/os-release
 sed -i 's|^HOME_URL=.*|HOME_URL="https://github.com/AndersNS/bluebuild-andersns-desktop"|' /usr/lib/os-release
 sed -i 's|^BUG_REPORT_URL=.*|BUG_REPORT_URL="https://github.com/AndersNS/bluebuild-andersns-desktop/issues"|' /usr/lib/os-release
