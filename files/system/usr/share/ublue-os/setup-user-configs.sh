@@ -64,6 +64,12 @@ if [ ! -f "$HOME/.config/foot/foot.ini" ] && [ -d "/usr/etc/skel/.config/foot" ]
     cp -r /usr/etc/skel/.config/foot/* "$HOME/.config/foot/"
 fi
 
+# Copy Wofi config if it doesn't exist
+if [ ! -d "$HOME/.config/wofi" ] && [ -d "/usr/etc/skel/.config/wofi" ]; then
+    mkdir -p "$HOME/.config/wofi"
+    cp -r /usr/etc/skel/.config/wofi/* "$HOME/.config/wofi/"
+fi
+
 # Enable elephant service for Walker launcher
 if command -v elephant &> /dev/null; then
     elephant service enable 2>/dev/null || true
