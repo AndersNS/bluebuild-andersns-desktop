@@ -16,11 +16,12 @@ modules:
   - type: dnf
     repos:
       copr:
-        - solopasha/hyprland
+        - lionheartp/Hyprland
     install:
       packages:
-        # Hyprland (hyprland-qtutils skipped - COPR needs Qt 6.10 rebuild)
+        # Hyprland
         - hyprland
+        - hyprland-qtutils
         - xdg-desktop-portal-hyprland
         - hyprpaper
         - hyprlock
