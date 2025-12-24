@@ -21,7 +21,7 @@ modules:
       packages:
         # Hyprland
         - hyprland
-        - hyprland-qtutils
+        - hyprland-qt-support
         - xdg-desktop-portal-hyprland
         - hyprpaper
         - hyprlock

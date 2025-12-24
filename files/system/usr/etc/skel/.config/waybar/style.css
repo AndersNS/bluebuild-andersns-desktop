@@ -50,13 +50,22 @@ window#waybar {
 #workspaces button {
   background-color: #2a2a37;
   color: #727169;
+  padding: 0px 8px;
+  margin: 0px 2px;
+  border-radius: 5px;
 }
 
 #workspaces button.active {
-  background: #223249;
-  color: #dcd7ba;
+  background: #7e9cd8;
+  color: #16161d;
+  font-weight: bold;
 }
 
 #workspaces button.persistent {
   color: #54546d;
+}
+
+#workspaces button:hover {
+  background: #363646;
+  color: #c8c093;
 }

@@ -24,7 +24,10 @@
     "format": "{name}",
     "tooltip": false,
     "all-outputs": false,
-    "sort-by-number": true,
+    "format-icons": {
+      "active": "",
+      "default": ""
+    },
     "persistent-workspaces": {
       "1": [],
       "2": [],
