@@ -24,7 +24,7 @@ update-all:
 # Reset configs to fresh defaults (as if new user)
 reset-configs:
     #!/usr/bin/env bash
-    echo "This will reset your Hyprland, Alacritty, Kitty, and Waybar configs to defaults."
+    echo "This will reset your Hyprland, Alacritty, Kitty, Foot, Waybar, and Wofi configs to defaults."
     echo "WARNING: Current configs will be deleted (no backup)."
     echo ""
     read -p "Continue? [y/N] " -n 1 -r
@@ -39,7 +39,9 @@ reset-configs:
     rm -rf "$HOME/.config/hypr"
     rm -rf "$HOME/.config/alacritty"
     rm -rf "$HOME/.config/kitty"
+    rm -rf "$HOME/.config/foot"
     rm -rf "$HOME/.config/waybar"
+    rm -rf "$HOME/.config/wofi"
     rm -f "$HOME/.config/.skel-configs-copied"
     
     # Copy fresh configs from skel
@@ -47,11 +49,9 @@ reset-configs:
     cp -r /usr/etc/skel/.config/hypr "$HOME/.config/"
     cp -r /usr/etc/skel/.config/alacritty "$HOME/.config/"
     cp -r /usr/etc/skel/.config/kitty "$HOME/.config/"
+    cp -r /usr/etc/skel/.config/foot "$HOME/.config/"
     cp -r /usr/etc/skel/.config/waybar "$HOME/.config/"
-    
-    # Setup hardware-specific environment
-    echo "Setting up hardware-specific environment..."
-    /usr/share/ublue-os/setup-hyprland-env.sh
+    cp -r /usr/etc/skel/.config/wofi "$HOME/.config/"
     
     # Mark as setup
     touch "$HOME/.config/.skel-configs-copied"
