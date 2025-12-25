@@ -41,5 +41,29 @@ if [ ! -f "$HOME/.config/kitty/kitty.conf" ] && [ -d "/usr/etc/skel/.config/kitt
   cp -r /usr/etc/skel/.config/kitty/* "$HOME/.config/kitty/" 2>/dev/null
 fi
 
+# Copy Foot config if it doesn't exist
+if [ ! -f "$HOME/.config/foot/foot.ini" ] && [ -d "/usr/etc/skel/.config/foot" ]; then
+  mkdir -p "$HOME/.config/foot" 2>/dev/null
+  cp -r /usr/etc/skel/.config/foot/* "$HOME/.config/foot/" 2>/dev/null
+fi
+
+# Copy Wofi config if it doesn't exist
+if [ ! -f "$HOME/.config/wofi/config" ] && [ -d "/usr/etc/skel/.config/wofi" ]; then
+  mkdir -p "$HOME/.config/wofi" 2>/dev/null
+  cp -r /usr/etc/skel/.config/wofi/* "$HOME/.config/wofi/" 2>/dev/null
+fi
+
+# Always ensure hyprpaper.conf exists (required for wallpaper)
+if [ ! -f "$HOME/.config/hypr/hyprpaper.conf" ] && [ -f "/usr/etc/skel/.config/hypr/hyprpaper.conf" ]; then
+  mkdir -p "$HOME/.config/hypr" 2>/dev/null
+  cp /usr/etc/skel/.config/hypr/hyprpaper.conf "$HOME/.config/hypr/hyprpaper.conf" 2>/dev/null
+fi
+
+# Always ensure hyprlock.conf exists (required for lockscreen)
+if [ ! -f "$HOME/.config/hypr/hyprlock.conf" ] && [ -f "/usr/etc/skel/.config/hypr/hyprlock.conf" ]; then
+  mkdir -p "$HOME/.config/hypr" 2>/dev/null
+  cp /usr/etc/skel/.config/hypr/hyprlock.conf "$HOME/.config/hypr/hyprlock.conf" 2>/dev/null
+fi
+
 # Mark as completed
 touch "$MARKER_FILE" 2>/dev/null
