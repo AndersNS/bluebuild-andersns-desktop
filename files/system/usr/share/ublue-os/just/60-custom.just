@@ -34,7 +34,7 @@ reset-configs:
         exit 0
     fi
     
-    # Remove existing configs
+    # Remove existing configs and marker
     echo "Removing current configs..."
     rm -rf "$HOME/.config/hypr"
     rm -rf "$HOME/.config/alacritty"
@@ -44,14 +44,23 @@ reset-configs:
     rm -rf "$HOME/.config/wofi"
     rm -f "$HOME/.config/.skel-configs-copied"
     
+    # Recreate empty directories
+    echo "Creating fresh directories..."
+    mkdir -p "$HOME/.config/hypr"
+    mkdir -p "$HOME/.config/alacritty"
+    mkdir -p "$HOME/.config/kitty"
+    mkdir -p "$HOME/.config/foot"
+    mkdir -p "$HOME/.config/waybar"
+    mkdir -p "$HOME/.config/wofi"
+    
     # Copy fresh configs from skel
     echo "Copying fresh configs..."
-    cp -r /usr/etc/skel/.config/hypr "$HOME/.config/"
-    cp -r /usr/etc/skel/.config/alacritty "$HOME/.config/"
-    cp -r /usr/etc/skel/.config/kitty "$HOME/.config/"
-    cp -r /usr/etc/skel/.config/foot "$HOME/.config/"
-    cp -r /usr/etc/skel/.config/waybar "$HOME/.config/"
-    cp -r /usr/etc/skel/.config/wofi "$HOME/.config/"
+    cp -r /usr/etc/skel/.config/hypr/* "$HOME/.config/hypr/"
+    cp -r /usr/etc/skel/.config/alacritty/* "$HOME/.config/alacritty/"
+    cp -r /usr/etc/skel/.config/kitty/* "$HOME/.config/kitty/"
+    cp -r /usr/etc/skel/.config/foot/* "$HOME/.config/foot/"
+    cp -r /usr/etc/skel/.config/waybar/* "$HOME/.config/waybar/"
+    cp -r /usr/etc/skel/.config/wofi/* "$HOME/.config/wofi/"
     
     # Mark as setup
     touch "$HOME/.config/.skel-configs-copied"

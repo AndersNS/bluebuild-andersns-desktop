@@ -1,78 +1,101 @@
-/* Kanagawa theme for Waybar */
 * {
-  border: none;
-  font-family: 'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', 'Symbols Nerd Font Mono';
-  font-size: 13px;
-  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-  min-height: 20px;
+  font-family: JetbrainsMono Nerd Font;
+  font-size: 10px;
+  min-height: 0;
+  padding-right: 2px;
+  padding-left: 2px;
+  padding-bottom: 0px;
 }
 
-window#waybar {
-  background: #1f1f28;
-}
-
-#window,
-#clock,
-#workspaces,
-#tray,
-#bluetooth,
-#network,
-#pulseaudio,
-#idle_inhibitor,
-#custom-exit,
-#cpu,
-#mpd {
-  background-color: #2a2a37;
-  color: #c8c093;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-#tray,
-#bluetooth,
-#pulseaudio {
-  margin-right: 5px;
-}
-
-#tray {
-  font-size: 13px;
+#waybar {
+  background: transparent;
+  color: #dcd7ba;
+  margin: 2px 2px;
 }
 
 #workspaces {
-  padding: 0px 0px;
-  margin-left: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  background: #16161d;
+  margin-left: 2px;
 }
 
 #workspaces button {
-  background-color: #2a2a37;
-  color: #727169;
-  padding: 0px 8px;
-  margin: 0px 2px;
+  color: #c8c093;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  padding: 0.4rem;
 }
 
 #workspaces button.active {
-  background: #7e9cd8;
-  color: #16161d;
-  font-weight: bold;
-  border: 2px solid #dcd7ba;
+  color: #7fb4ca;
+  border-radius: 5px;
 }
 
-#workspaces button.urgent {
-  background: #e82424;
-  color: #16161d;
-}
-
-#workspaces button.persistent {
-  color: #54546d;
+button {
+  background: transparent;
 }
 
 #workspaces button:hover {
-  background: #363646;
-  color: #c8c093;
+  background: #1f1f28;
+  border: 0px solid transparent;
+}
+
+#custom-music,
+#tray,
+#backlight,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#custom-lock,
+#custom-power {
+  background-color: #16161d;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+#clock {
+  color: #7e9cd8;
+  border-radius: 5px;
+}
+
+#battery {
+  color: #98bb6c;
+}
+
+#battery.charging {
+  color: #98bb6c;
+}
+
+#battery.warning:not(.charging) {
+  color: #e82424;
+}
+
+#backlight {
+  color: #e6c384;
+}
+
+#backlight,
+#battery {
+  border-radius: 0;
+}
+
+#pulseaudio {
+  color: #7aa89f;
+  border-radius: 5px 0px 0px 5px;
+}
+
+#custom-music {
+  color: #957fb8;
+  border-radius: 5px;
+}
+
+#custom-lock {
+  color: #dcd7ba;
+}
+
+#custom-power {
+  margin-right: 1rem;
+  border-radius: 0px 5px 5px 0px;
+  color: #c34043;
 }
