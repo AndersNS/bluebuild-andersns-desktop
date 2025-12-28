@@ -17,6 +17,7 @@ modules:
     repos:
       copr:
         - lionheartp/Hyprland
+        - scottames/ghostty
     install:
       packages:
         # Hyprland
@@ -40,6 +41,7 @@ modules:
         - foot
         - kitty
         - alacritty
+        - ghostty
         # File manager
         - thunar
         - thunar-archive-plugin
@@ -61,12 +63,12 @@ modules:
       - customize-os-release.sh
 
   # Flatpaks
-  - type: default-flatpaks
-    configurations:
-      - scope: system
-        notify: true
-        install:
-          - com.mitchellh.ghostty
+  # - type: default-flatpaks
+  #   configurations:
+  #     - scope: system
+  #       notify: true
+  #       install:
+  #         - flatpak.thing.name
 
   # Image signing
   - type: signing
