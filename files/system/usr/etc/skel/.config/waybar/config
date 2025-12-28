@@ -34,7 +34,7 @@
   },
 
   "clock": {
-    "timezone": "America/Fortaleza",
+    "timezone": "Europe/Oslo",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     // "format": "{:%d/%m/%Y - %H:%M:%S}", // full date
     "format": "{:%H:%M}", // hour:minutes
